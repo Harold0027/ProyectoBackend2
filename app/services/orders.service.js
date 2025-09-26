@@ -7,7 +7,7 @@ const orderDAO = new OrderMongoDAO();
 export const ordersService = {
     async list(query = {}) {
         const orders = await orderDAO.listAll(query);
-        return (orders || []).map(toOrderDTO);
+        return (orders || []).map(toOrderDTO); 
     },
 
     async listPaginated(opts) {
