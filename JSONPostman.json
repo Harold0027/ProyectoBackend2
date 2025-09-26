@@ -1,25 +1,22 @@
 {
 	"info": {
-		"_postman_id": "884e844f-4c3e-4212-b51e-ebd6ca6042e4",
-		"name": "usersJWT",
+		"_postman_id": "11a7931f-f203-481f-8c1b-3c77b043b871",
+		"name": "ecommerceBack2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28554518"
 	},
 	"item": [
 		{
-			"name": "registro",
+			"name": "get session",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Cookie",
-						"value": "access_token",
-						"type": "text"
-					}
-				],
+				"method": "GET",
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"first_name\": \"Harold\",\r\n  \"last_name\": \"Monroy\",\r\n  \"email\": \"hrllsn@example.com\",\r\n  \"age\": 25,\r\n  \"password\": \"mnr12345\",\r\n  \"role\": \"admin\"\r\n}",
+					"raw": "{\r\n  \"email\": \"harol@example.com\",\r\n  \"password\": \"123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,7 +24,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/users",
+					"raw": "http://localhost:3000/api/session/jwt/me",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -35,7 +32,39 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"users"
+						"session",
+						"jwt",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Ana\",\r\n  \"last_name\": \"Gomez\",\r\n  \"email\": \"ana@example.com\",\r\n  \"age\": 28,\r\n  \"password\": \"abcdef\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/session/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"session",
+						"register"
 					]
 				}
 			},
@@ -48,7 +77,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\r\n{\r\n  \"email\": \"hrllsn@example.com\",\r\n  \"password\": \"mnr12345\"\r\n}",
+					"raw": "{\r\n  \"email\": \"juana@gmail.com\",\r\n  \"password\": \"1234567\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -56,7 +85,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/sessions/login",
+					"raw": "http://localhost:3000/api/session/jwt/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -64,7 +93,8 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"sessions",
+						"session",
+						"jwt",
 						"login"
 					]
 				}
@@ -72,12 +102,21 @@
 			"response": []
 		},
 		{
-			"name": "current",
+			"name": "post order",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"ORD001\",\r\n  \"buyer\": \"68d4c4ff449ed311199162a4\",  \r\n  \"items\": [\r\n    {\r\n      \"productId\": \"64f8b1a7d5c123456789abcd\",\r\n      \"title\": \"Camiseta Gamer\",\r\n      \"qty\": 2,\r\n      \"unitPrice\": 50\r\n    }\r\n  ],\r\n  \"total\": 100,\r\n  \"status\": \"pending\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/sessions/current",
+					"raw": "http://localhost:3000/api/orders",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -85,15 +124,88 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"sessions",
-						"current"
+						"orders"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get usuarios",
+			"name": "get orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"harol@example.com\",\r\n  \"password\": \"123456\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders/68d4c686449ed311199162ab",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"68d4c686449ed311199162ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put orders id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"status\": \"completed\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"64f8b1a7d5c123456789abcd\",\r\n      \"quantity\": 2\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders/68d4c686449ed311199162ab",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"68d4c686449ed311199162ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -113,12 +225,12 @@
 			"response": []
 		},
 		{
-			"name": "get usuarios :id",
+			"name": "get user id",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/api/users/68b63e1745c4e838206f553b",
+					"raw": "http://localhost:3000/api/users/68b63520116f2306a2f62edd",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,28 +239,19 @@
 					"path": [
 						"api",
 						"users",
-						"68b63e1745c4e838206f553b"
+						"68b63520116f2306a2f62edd"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "update",
+			"name": "put user id",
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"first_name\": \"Juan Carlos\",\r\n  \"age\": 26\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3000/api/users/68b630dd116f2306a2f62ed1",
+					"raw": "http://localhost:3000/api/users/68b63520116f2306a2f62edd",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -157,14 +260,14 @@
 					"path": [
 						"api",
 						"users",
-						"68b630dd116f2306a2f62ed1"
+						"68b63520116f2306a2f62edd"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "delete user id",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -179,6 +282,100 @@
 						"api",
 						"users",
 						"68b63520116f2306a2f62edd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send mail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"name\": \"Harol\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/mailer/mail/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mailer",
+						"mail",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post order-status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"usuario@example.com\",\r\n  \"code\": \"64f7b2e1a8c1f5d3b2a9c123\",\r\n  \"status\": \"Enviado\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/mailer/mail/order-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mailer",
+						"mail",
+						"order-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post messaging",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"to\": \"+51933664997\",\r\n  \"body\": \"Hola! Este es un mensaje de prueba.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"list"
 					]
 				}
 			},
