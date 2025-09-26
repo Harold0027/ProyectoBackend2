@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>{{title}}</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  header, footer { background: #333; color: #fff; padding: 1rem; text-align: center; position: fixed; width: 100%; z-index: 1000; }
+  header { top: 0; }
+  footer { bottom: 0; }
+  nav { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  nav a, nav span { color: #fff; text-decoration: none; font-weight: bold; }
+  main { padding: 5rem 2rem 3rem 2rem; min-height: calc(100vh - 8rem); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+  th { background: #f4f4f4; }
+  .btn { padding: 8px 16px; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; }
+  .btn-primary { background: #007bff; color: #fff; }
+  .btn-danger { background: #dc3545; color: #fff; }
+  .status-pending { color: orange; font-weight: bold; }
+  .status-paid { color: green; font-weight: bold; }
+  .status-cancelled { color: red; font-weight: bold; }
+  .message { padding: 10px; margin-bottom: 1rem; border-radius: 4px; }
+  .message-success { background: #d4edda; color: #155724; }
+  .message-error { background: #f8d7da; color: #721c24; }
+</style>
+</head>
+<body>
+<header>
+  <h1>E-commerce</h1>
+  <nav>
+    {{#if user}}
+      <span>Hola, {{user.first_name}}</span>
+      <a href="/">Mis Órdenes</a>
+      <a href="/orders/create">Crear Orden</a>
+      <form action="/logout" method="POST" style="display:inline;">
+        <button class="btn btn-primary">Logout</button>
+      </form>
+    {{else}}
+      <a href="/login">Login</a>
+      <a href="/register">Registrarse</a>
+    {{/if}}
+  </nav>
+</header>
+<main>
+    {{#if success}}
+        <div class="message message-success">{{success}}</div>
+    {{/if}}
+    {{#if error}}
+        <div class="message message-error">{{error}}</div>
+    {{/if}}
+    {{{body}}}
+</main>
+
+<footer>
+    &copy; 2025 E-commerce 
+</footer>
+</body>
+</html>

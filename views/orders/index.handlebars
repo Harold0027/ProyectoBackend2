@@ -1,0 +1,30 @@
+<h2>Mis Órdenes</h2>
+
+{{#if orders.length}}
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Productos</th>
+      <th>Estado</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each orders}}
+    <tr>
+      <td>{{this.code}}</td>
+      <td>
+        {{#each this.items}}
+          {{this.title}} x {{this.qty}} = ${{multiply this.qty this.unitPrice}}<br>
+        {{/each}}
+      </td>
+      <td class="status-{{this.status}}">{{this.status}}</td>
+      <td>${{this.total}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{else}}
+<p>No hay órdenes para mostrar.</p>
+{{/if}}

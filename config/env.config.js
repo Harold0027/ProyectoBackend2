@@ -8,7 +8,11 @@ const env = {
     MONGO_URI: process.env.MONGO_URI || '',
     MONGO_URI_ATLAS: process.env.MONGO_URI_ATLAS || '',
     SESSION_SECRET: process.env.SESSION_SECRET || '',
-    JWT_SECRET: process.env.JWT_SECRET || ''
+    JWT_SECRET: process.env.JWT_SECRET || '',
+    TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
+    TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
+    TWILIO_FROM_SMS: process.env.TWILIO_FROM_SMS || '',
+    TWILIO_FROM_WAPP: process.env.TWILIO_FROM_WAPP || ''
 }
 
 export function validateEnv() {
@@ -20,6 +24,9 @@ export function validateEnv() {
     if (missing.length) {
         console.error('[ENV] Faltan variables de entorno: ', missing.join(', '));
         process.exit(1);
+    }
+    if (!env.TWILIO_ACCOUNT_SID || !env.TWILIO_AUTH_TOKEN) {
+    console.warn('[ENV] Faltan variables de Twilio');
     }
 }
 
