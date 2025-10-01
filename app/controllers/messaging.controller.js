@@ -1,4 +1,3 @@
-// app/controllers/messaging.controller.js
 import { messagingService } from "../services/messaging.service.js";
 
 export const messagingController = {

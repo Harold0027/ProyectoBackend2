@@ -1,8 +1,7 @@
-// app/services/orders.service.js
 import { OrderMongoDAO } from "../dao/order.mongo.dao.js";
 import { toOrderDTO } from "../dtos/order.dto.js";
 
-const orderDAO = new OrderMongoDAO(); 
+const orderDAO = new OrderMongoDAO();  
 
 export const ordersService = {
     async list(query = {}) {

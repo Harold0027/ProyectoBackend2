@@ -1,4 +1,3 @@
-// app/dao/order.mongo.dao.js
 import { BaseDAO } from "./base.dao.js";
 import { Order } from "../../config/models/order.model.js";
 

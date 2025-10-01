@@ -1,4 +1,3 @@
-// app/dao/user.dao.js
 import { BaseDAO } from "./base.dao.js";
 import { User } from "../../config/models/user.model.js";
 

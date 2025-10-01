@@ -1,4 +1,3 @@
-// app/services/mailer.service.js
 import nodemailer from 'nodemailer';
 import fs from 'fs/promises';
 import path from 'path';
@@ -47,7 +46,7 @@ export class MailerService {
 
         const previewUrl = nodemailer.getTestMessageUrl(info);
 
-        return { ...info, previewUrl }; // <-- devuelve info completo + previewUrl
+        return { ...info, previewUrl };
     }
 }
 

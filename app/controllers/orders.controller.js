@@ -1,4 +1,3 @@
-// app/controllers/orders.controller.js
 import { ordersService } from "../services/orders.service.js";
 
 export const ordersController = {
